@@ -1,0 +1,9 @@
+{
+  "guessNumTitle": "猜数字",
+  "clickCreateRandomNum": "点击生成随机数值",
+  "inputGuessNum": "输入0~99数字",
+  "guessBig": "大了",
+  "guessSmall": "小了",
+  "guessEqual": "恭喜你，猜对了！",
+  "muyuTitle": "电子木鱼"
+}
