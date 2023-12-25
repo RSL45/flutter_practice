@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GuessAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -12,10 +11,6 @@ class GuessAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
-        statusBarColor: Colors.transparent,
-      ),
       leading: IconButton(
         icon: const Icon(Icons.menu, color: Colors.black),
         onPressed: () {},
@@ -26,7 +21,6 @@ class GuessAppBar extends StatelessWidget implements PreferredSizeWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xffF3F6F9),
-          constraints: const BoxConstraints(maxHeight: 35),
           border: UnderlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(6),

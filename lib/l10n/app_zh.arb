@@ -5,5 +5,12 @@
   "guessBig": "大了",
   "guessSmall": "小了",
   "guessEqual": "恭喜你，猜对了！",
-  "muyuTitle": "电子木鱼"
+  "muyuTitle": "电子木鱼",
+  "muyuCount": "功德数: {count}",
+  "muyuCountPlus": "功德+{value}",
+  "muyuVersion1": "基础版",
+  "muyuVersion2": "尊享版",
+  "selectMuYuVersion": "选择木鱼",
+  "muyuAudioItem": "音效{index}",
+  "selectMuYuAudio": "选择音效"
 }

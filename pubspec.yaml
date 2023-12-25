@@ -21,6 +21,12 @@ dependencies:
   # Toast
   fluttertoast: ^8.2.4
 
+  # 音频功能
+  flame_audio: ^2.1.6
+
+  #生成唯一id
+  uuid: ^3.0.7
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -32,3 +38,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/images/
+    - assets/audio/
