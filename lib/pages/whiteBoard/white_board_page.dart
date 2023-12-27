@@ -14,7 +14,10 @@ class WhiteBoardPage extends StatefulWidget {
   State<WhiteBoardPage> createState() => _WhiteBoardPageState();
 }
 
-class _WhiteBoardPageState extends State<WhiteBoardPage> {
+class _WhiteBoardPageState extends State<WhiteBoardPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   List<WhiteBoardLine> _lines = [];
   List<WhiteBoardLine> _historyLines = [];
 

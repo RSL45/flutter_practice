@@ -80,9 +80,6 @@ class _MuYuPageState extends State<MuYuPage>
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          titleTextStyle: const TextStyle(
-              fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
-          iconTheme: const IconThemeData(color: Colors.black),
           title: Text(AppLocalizations.of(context)!.muyuTitle),
           actions: [
             IconButton(onPressed: _actionToHistory, icon: Icon(Icons.history)),

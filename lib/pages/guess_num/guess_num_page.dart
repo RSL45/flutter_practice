@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_practice/pages/guess_num/guess_app_bar.dart';
 import 'package:flutter_practice/pages/guess_num/guess_result_notice.dart';
+import 'package:flutter_practice/storage/sp_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class GuessNumPage extends StatefulWidget {
@@ -21,6 +22,19 @@ class _GuessNumPageState extends State<GuessNumPage> {
   //null:equal true:big false:small
   bool? _isBig = null;
   TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _initConfig();
+  }
+
+  void _initConfig() async {
+    Map<String, dynamic> config = await SpStorage.instance.readGuessConfig();
+    _isGuessing = config['guessing'] ?? false;
+    _randomNum = config['value'] ?? 0;
+    setState(() {});
+  }
 
   @override
   void dispose() {
@@ -85,6 +99,8 @@ class _GuessNumPageState extends State<GuessNumPage> {
       _randomNum = Random().nextInt(100);
       print('===randomNum:$_randomNum===');
       _isGuessing = true;
+
+      SpStorage.instance?.saveGuess(guessing: _isGuessing, value: _randomNum);
     });
   }
 
