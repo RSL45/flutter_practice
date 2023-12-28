@@ -4,5 +4,14 @@ class MuYuMeritRecord {
   final int value; // 功德数
   final String image; // 图片资源
   final String audio; // 音效名称
+
   MuYuMeritRecord(this.id, this.timestamp, this.value, this.image, this.audio);
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "timestamp": timestamp,
+        "value": value,
+        "image": image,
+        "audio": audio,
+      };
 }

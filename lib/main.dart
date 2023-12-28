@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_practice/storage/db_storage/db_storage.dart';
 
 import 'pages/navigation/app_navigation.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DbStorage.instance.open();
   runApp(const MyApp());
 }
 

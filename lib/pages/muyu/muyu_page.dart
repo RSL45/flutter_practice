@@ -9,6 +9,8 @@ import 'package:flutter_practice/pages/muyu/muyu_count_pannel.dart';
 import 'package:flutter_practice/pages/muyu/muyu_image_option_panel.dart';
 import 'package:flutter_practice/pages/muyu/muyu_record_history.dart';
 import 'package:flutter_practice/pages/muyu/widgets/muyu_audio_option_panel.dart';
+import 'package:flutter_practice/storage/db_storage/db_storage.dart';
+import 'package:flutter_practice/storage/sp_storage.dart';
 import 'package:uuid/uuid.dart';
 
 import 'models/muyu_audio_option.dart';
@@ -59,9 +61,19 @@ class _MuYuPageState extends State<MuYuPage>
   @override
   void initState() {
     super.initState();
+    _initConfig();
     initAudioPool();
     clickAnimateController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 800));
+  }
+
+  void _initConfig() async {
+    Map<String, dynamic> config = await SpStorage.instance.readMuYuConfig();
+    _counter = config['counter'] ?? 0;
+    _activeImageIndex = config['activeImageIndex'] ?? 0;
+    _activeAudioIndex = config['activeAudioIndex'] ?? 0;
+    _records = await DbStorage.instance.meritRecordDao.query();
+    setState(() {});
   }
 
   void initAudioPool() async {
@@ -139,6 +151,7 @@ class _MuYuPageState extends State<MuYuPage>
     _activeAudioIndex = selectIndex;
     pool = await FlameAudio.createPool(audioOptions[_activeAudioIndex].path,
         maxPlayers: 1);
+    saveConfig();
   }
 
   void _actionToSwitchImage() {
@@ -160,6 +173,7 @@ class _MuYuPageState extends State<MuYuPage>
     setState(() {
       _activeImageIndex = selectIndex;
     });
+    saveConfig();
   }
 
   void _actionImage() {
@@ -170,13 +184,24 @@ class _MuYuPageState extends State<MuYuPage>
       _counter += _curValue;
       print('===actionImage:counter-$_counter,curValue-$_curValue');
       String id = uuid.v4();
-      _records.add(MuYuMeritRecord(
+      MuYuMeritRecord _curRecord = MuYuMeritRecord(
         id,
         DateTime.now().millisecondsSinceEpoch,
         _curValue,
         activeImage,
         audioOptions[_activeAudioIndex].name,
-      ));
+      );
+      _records.add(_curRecord);
+      saveConfig();
+      DbStorage.instance.meritRecordDao.insert(_curRecord);
     });
+  }
+
+  void saveConfig() {
+    SpStorage.instance.saveMuYuConfig(
+      counter: _counter,
+      activeImageIndex: _activeImageIndex,
+      activeAudioIndex: _activeAudioIndex,
+    );
   }
 }

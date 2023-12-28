@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/pages/guess_num/guess_num_page.dart';
 import 'package:flutter_practice/pages/muyu/muyu_page.dart';
 import 'package:flutter_practice/pages/navigation/app_bottom_bar.dart';
+import 'package:flutter_practice/pages/net_article/views/net_article_page.dart';
 import 'package:flutter_practice/pages/whiteBoard/white_board_page.dart';
 
 import 'models/menu_data.dart';
@@ -19,6 +20,7 @@ class _AppNavigationState extends State<AppNavigation> {
     MenuData(label: '猜数字', icon: Icons.question_mark),
     MenuData(label: '电子木鱼', icon: Icons.my_library_music_outlined),
     MenuData(label: '白板绘制', icon: Icons.palette_outlined),
+    MenuData(label: '网络文章', icon: Icons.article_outlined),
   ];
   final PageController _pageController = PageController();
 
@@ -42,6 +44,7 @@ class _AppNavigationState extends State<AppNavigation> {
         GuessNumPage(),
         MuYuPage(),
         WhiteBoardPage(),
+        NetArticlePage(),
       ],
     );
     // switch (index) {

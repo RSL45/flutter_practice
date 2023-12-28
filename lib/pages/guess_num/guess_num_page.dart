@@ -100,7 +100,7 @@ class _GuessNumPageState extends State<GuessNumPage> {
       print('===randomNum:$_randomNum===');
       _isGuessing = true;
 
-      SpStorage.instance?.saveGuess(guessing: _isGuessing, value: _randomNum);
+      SpStorage.instance.saveGuess(guessing: _isGuessing, value: _randomNum);
     });
   }
 
@@ -115,8 +115,10 @@ class _GuessNumPageState extends State<GuessNumPage> {
         _isGuessing = false;
         _isBig = null;
       });
-      if (!Platform.isWindows)
+      SpStorage.instance.saveGuess(guessing: _isGuessing, value: _randomNum);
+      if (!Platform.isWindows) {
         Fluttertoast.showToast(msg: AppLocalizations.of(context)!.guessEqual);
+      }
       return;
     }
 
@@ -125,11 +127,13 @@ class _GuessNumPageState extends State<GuessNumPage> {
     });
 
     if (_isBig == true) {
-      if (!Platform.isWindows)
+      if (!Platform.isWindows) {
         Fluttertoast.showToast(msg: AppLocalizations.of(context)!.guessBig);
+      }
     } else {
-      if (!Platform.isWindows)
+      if (!Platform.isWindows) {
         Fluttertoast.showToast(msg: AppLocalizations.of(context)!.guessSmall);
+      }
     }
   }
 }
